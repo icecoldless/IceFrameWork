@@ -1,6 +1,8 @@
-﻿using Pool;
+﻿using Coroutine;
+using Pool;
 using Scene;
 using System;
+using System.Collections;
 using UIFW;
 using UnityEngine;
 using XLuaFramework;
@@ -11,6 +13,10 @@ using XLuaFramework;
 /// </summary>
 public class GameManager : Singleton<GameManager>
 {
+    /// <summary>
+    /// 游戏不销毁根物体
+    /// </summary>
+    public Transform GameRoot;
     /// <summary>
     /// 游戏是否结束
     /// </summary>
@@ -35,8 +41,10 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// 游戏初始化
     /// </summary>
-    public void Initialize()
+    public void Initialize(Transform root)
     {
+        //游戏根母体
+        GameRoot = root;
         //资源初始化
         ResManager.Instance.Init();
         //UISystem
@@ -139,4 +147,15 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
 
+    #region Coroutine
+    public CoroutineHolder Get(IEnumerator target)
+    {
+        return CoroutineManager.Instance.Get(target);
+    }
+
+    public void Run(IEnumerator target)
+    {
+        CoroutineManager.Instance.Run(target);
+    }
+    #endregion
 }

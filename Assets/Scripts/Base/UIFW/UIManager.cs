@@ -82,6 +82,8 @@ namespace UIFW
             //这是Resources目录的
             GameObject prefab = GameManager.Instance.LoadObject<GameObject>("Canvas");
             GameObject go = GameObject.Instantiate(prefab);
+            //设置3D物体位置
+            go.transform.SetParent(GameManager.Instance.GameRoot, false);
             GameManager.Instance.UnloadAsset("Canvas");
             return go.transform;
         }

@@ -11,7 +11,7 @@ public class GameLoop : MonoBehaviour
     private void Awake()
     {
         GameObject.DontDestroyOnLoad(this.gameObject);
-        GameManager.Instance.Initialize();
+        GameManager.Instance.Initialize(transform);
     }
 
     private void Update()

@@ -15,6 +15,7 @@ public class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T>
             if (_instance == null)
             {
                 _instance = new GameObject(typeof(T).Name).AddComponent<T>();
+                _instance.transform.SetParent(GameManager.Instance.GameRoot, false);
             }
             return _instance;
         }

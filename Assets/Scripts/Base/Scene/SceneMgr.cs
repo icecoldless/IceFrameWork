@@ -76,7 +76,7 @@ namespace Scene
                 GameManager.Instance.LoadSceneAB(scene.SceneName);
             }
             //使用异步操作数直接赋值监控就行了，好像不用迭代
-            LoadingProcess = SceneManager.LoadSceneAsync(scene.SceneName);
+            LoadingProcess = SceneManager.LoadSceneAsync(scene.SceneName); //内部开启了一个协程，我们不用管它的逻辑
             LoadingProcess.allowSceneActivation = false; //异步加载
             _CurScene = scene;
         }
